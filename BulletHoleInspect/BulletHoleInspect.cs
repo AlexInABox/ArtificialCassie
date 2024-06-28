@@ -12,10 +12,6 @@
         public override PluginPriority Priority { get; } = PluginPriority.Last;
 
         public override string Author { get; } = "AlexInABox";
-        private BulletHoleInspect()
-        {
-        }
-
 
         public override void OnEnabled()
         {

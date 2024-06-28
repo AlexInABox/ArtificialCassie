@@ -1,50 +1,35 @@
-namespace BulletHoleInspect
+namespace BulletHoleInspect.Commands
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using Exiled.API.Features;
 
     using CommandSystem;
 
-    using Exiled.API.Features;
-    using Exiled.Permissions.Extensions;
-
     using UnityEngine;
 
-    [CommandHandler(typeof(ClientCommandHandler))]
-    public class getBulletOwner : ICommand
+
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    public class toggleBulletHoleOwners : ParentCommand
     {
-        public string Command { get; } = "getbulletowner";
-        public string Description { get; } = "Get the owner of the bullet hole you are looking at.";
-        public string[] Aliases { get; } = new string[] { "gbo" };
-
-        public bool SanitizeResponse => false;
-        /// <inheritdoc/>
-        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        public toggleBulletHoleOwners()
         {
-            Player player = Player.Get(sender);
+            LoadGeneratedCommands();
 
-            Ray ray = new(player.Transform.position, player.Transform.forward);
-            RaycastHit raycastHit = new();
+            // Use this to load commands for the parent command
+        }
+        public override string Command { get; } = "toggleBulletHoleOwners";
+        public override string Description { get; } = "Toggle the markers next to bullet holes to show the owner of the bullet hole.";
+        public override string[] Aliases { get; } = new string[] { "tbo" };
 
-            if (Physics.Raycast(ray, out raycastHit, 100f))
-            {
-                if (raycastHit.collider.TryGetComponent(out BulletHole bulletHole))
-                {
-                    response = $"Owner: {bulletHole.Owner}";
-                    return true;
-                }
-                else
-                {
-                    response = "You are not looking at a bullet hole.";
-                    return false;
-                }
-            }
-            else
-            {
-                response = "You are not looking at a bullet hole.";
-                return false;
-            }
+        public override void LoadGeneratedCommands() // Put here your commands (the other commands dont need the [CommandHandler(typeof())]
+        {
+        }
+        /// <inheritdoc/>
+        protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+            // just enable bullet hole markers for now
+            response = "Done!";
+            return true;
         }
     }
 }
