@@ -20,7 +20,7 @@ namespace BulletHoleInspect.Events
             //await Task.Delay(50);
             const int MAX_DELAY = 50;
             int waited_for = 0;
-            while (!IsSpeaking && waited_for < MAX_DELAY)
+            while (!Cassie.IsSpeaking && waited_for < MAX_DELAY)
             {
                 waited_for++;
                 await Task.Delay(1);
