@@ -18,6 +18,7 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
+            Cassie.Clear();
         }
     }
 }
