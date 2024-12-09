@@ -1,24 +1,26 @@
 namespace BulletHoleInspect.Events
 {
-    using System;
-    using Exiled.Events.EventArgs.Cassie;
-    using Exiled.Events.Handlers;
-    using Exiled.API.Features;
+    using System.Collections.Generic;
 
-    internal sealed class CassieAnnouncementHandler
+    using Exiled.API.Features;
+    using Exiled.API.Features.Items;
+    using Exiled.Events.EventArgs.Map;
+    using Exiled.Events.Patches.Events.Map;
+
+    internal sealed class BulletHoleHandler
     {
-        public CassieAnnouncementHandler()
+        public void OnPlacingBulletHole(PlacingBulletHoleEventArgs ev)
         {
-            Cassie.SendingCassieMessage += OnSendingCassieMessage;
+            Exiled.API.Features.Log.Info("Bullet hole placed at " + ev.Position);
         }
 
-        private void OnSendingCassieMessage(SendingCassieMessageEventArgs ev)
+        public void OnSendingCassieMessage(Exiled.Events.EventArgs.Cassie.SendingCassieMessageEventArgs ev)
         {
-            Console.WriteLine("CASSIE Announcement:");
-            Console.WriteLine($"Words: {ev.Words}");
-            Console.WriteLine($"MakeHold: {ev.MakeHold}");
-            Console.WriteLine($"MakeNoise: {ev.MakeNoise}");
-            Console.WriteLine($"IsAllowed: {ev.IsAllowed}");
+            Exiled.API.Features.Log.Info("CASSIE Announcement:");
+            Exiled.API.Features.Log.Info($"Words: {ev.Words}");
+            Exiled.API.Features.Log.Info($"MakeHold: {ev.MakeHold}");
+            Exiled.API.Features.Log.Info($"MakeNoise: {ev.MakeNoise}");
+            Exiled.API.Features.Log.Info($"IsAllowed: {ev.IsAllowed}");
         }
     }
 }
