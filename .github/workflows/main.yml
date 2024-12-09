@@ -2,10 +2,10 @@ name: RoundReports Build
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
   workflow_dispatch:
 env:
   REFERENCES_URL: https://exmod-team.github.io/SL-References/Dev.zip
@@ -26,14 +26,15 @@ jobs:
         run: |
           Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
           Expand-Archive -Path Dev.zip -DestinationPath ${{ env.REFERENCES_PATH }}
+          Invoke-WebRequest -Uri "https://github.com/Edren-Baton-Team/AudioPlayer/releases/download/v3.1.8/AudioPlayer.dll" -OutFile "${{ env.REFERENCES_PATH }}/AudioPlayer.dll"
 
       - name: Setup MSBuild.exe
         uses: microsoft/Setup-MSBuild@v2
         env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
 
       - name: Build
-        run: | 
+        run: |
           msbuild BulletHoleInspect\BulletHoleInspect.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
 
       - name: Upload artifacts
