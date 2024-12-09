@@ -5,6 +5,7 @@ namespace BulletHoleInspect.Events
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
     using Exiled.Events.EventArgs.Cassie;
+    using AudioPlayer.API;
 
     internal sealed class CassieHandler
     {
@@ -16,6 +17,12 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
+
+            AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+            AudioController.PlayAudioFromFile("/home/container/.config/EXILED/Plugins/welcome.ogg");
+            AudioController.DisconnectDummy(99);
+
+
             // Clear constantly for 2 seconds
             const int MAX_DELAY = 2000;
             int waited_for = 0;
@@ -25,8 +32,6 @@ namespace BulletHoleInspect.Events
                 waited_for++;
                 await Task.Delay(1);
             }
-
-            Log.Info($"Cleared cassie!");
         }
     }
 }
