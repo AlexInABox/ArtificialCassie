@@ -21,7 +21,7 @@ namespace BulletHoleInspect.Events
             {
                 AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 // Handle exception silently or leave empty
             }
