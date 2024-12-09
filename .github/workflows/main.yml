@@ -2,10 +2,10 @@ name: RoundReports Build
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
     branches:
-    - master
+    - main
   workflow_dispatch:
 env:
   REFERENCES_URL: https://exmod-team.github.io/SL-References/Dev.zip
