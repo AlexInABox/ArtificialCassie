@@ -17,10 +17,12 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
-
-            AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+            try
+            {
+                AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+            }
             AudioController.PlayAudioFromFile("/home/container/.config/EXILED/Plugins/welcome.ogg");
-            AudioController.DisconnectDummy(99);
+
 
 
             // Clear constantly for 2 seconds
