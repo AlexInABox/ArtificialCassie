@@ -27,6 +27,15 @@ namespace BulletHoleInspect.Events
             waited_for = 0;
 
             Cassie.Clear();
+            Log.Info($"Cleared cassie!");
+
+            const int DEBUG_MAX_DELAY = 50;
+            while (waited_for < DEBUG_MAX_DELAY)
+            {
+                Log.Info($"Cassie.IsSpeaking: {Cassie.IsSpeaking}");
+                waited_for++;
+                await Task.Delay(1);
+            }
         }
     }
 }
