@@ -18,8 +18,13 @@ namespace BulletHoleInspect.Events
 
             // Wait for 1 second before clearing
             //await Task.Delay(50);
-            while (!IsSpeaking)
+            const int MAX_DELAY = 50;
+            int waited_for = 0;
+            while (!IsSpeaking && waited_for < MAX_DELAY)
+            {
+                waited_for++;
                 await Task.Delay(1);
+            }
 
             Cassie.Clear();
         }
