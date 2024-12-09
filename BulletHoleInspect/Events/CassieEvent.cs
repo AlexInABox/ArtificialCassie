@@ -17,25 +17,22 @@ namespace BulletHoleInspect.Events
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
             // Wait before clearing
-            const int MAX_DELAY = 5000;
+            const int MAX_DELAY = 2000;
             int waited_for = 0;
             while (!Cassie.IsSpeaking && waited_for < MAX_DELAY)
             {
-                await Task.Delay(1);
                 waited_for++;
+                await Task.Delay(1);
             }
             waited_for = 0;
-
-            Cassie.Clear();
-            Log.Info($"Cleared cassie!");
-
-            const int DEBUG_MAX_DELAY = 50;
-            while (waited_for < DEBUG_MAX_DELAY)
+            while (waited_for < MAX_DELAY)
             {
-                Log.Info($"Cassie.IsSpeaking: {Cassie.IsSpeaking}");
+                Cassie.Clear();
                 waited_for++;
                 await Task.Delay(1);
             }
+
+            Log.Info($"Cleared cassie!");
         }
     }
 }
