@@ -7,7 +7,7 @@ namespace BulletHoleInspect.Events
     using Exiled.Events.EventArgs.Cassie;
 
 
-    internal sealed class PlayerHandler
+    internal sealed class CassieHandler
     {
 
         public void OnSendingCassieMessage(SendingCassieMessageEventArgs ev)
