@@ -17,7 +17,10 @@ namespace BulletHoleInspect.Events
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
             // Wait for 1 second before clearing
-            await Task.Delay(50);
+            //await Task.Delay(50);
+            while (!IsSpeaking)
+                await Task.Delay(1);
+
             Cassie.Clear();
         }
     }
