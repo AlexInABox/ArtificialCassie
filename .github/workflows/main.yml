@@ -27,6 +27,7 @@ jobs:
           Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
           Expand-Archive -Path Dev.zip -DestinationPath ${{ env.REFERENCES_PATH }}
           Invoke-WebRequest -Uri "https://github.com/Edren-Baton-Team/AudioPlayer/releases/download/v3.1.8/AudioPlayer.dll" -OutFile "${{ env.REFERENCES_PATH }}/AudioPlayer.dll"
+          Get-ChildItem -Path ${{ env.REFERENCES_PATH }}
 
       - name: Setup MSBuild.exe
         uses: microsoft/Setup-MSBuild@v2
