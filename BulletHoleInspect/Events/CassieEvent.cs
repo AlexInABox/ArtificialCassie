@@ -22,9 +22,10 @@ namespace BulletHoleInspect.Events
             int waited_for = 0;
             while (!Cassie.IsSpeaking && waited_for < MAX_DELAY)
             {
-                waited_for++;
                 await Task.Delay(1);
+                waited_for++;
             }
+            waited_for = 0;
 
             Cassie.Clear();
         }
