@@ -1,19 +1,24 @@
 namespace BulletHoleInspect.Events
 {
-    using System.Collections.Generic;
-
+    using System;
+    using Exiled.Events.EventArgs.Cassie;
+    using Exiled.Events.Handlers;
     using Exiled.API.Features;
-    using Exiled.API.Features.Items;
-    using Exiled.Events.EventArgs.Map;
-    using Exiled.Events.Patches.Events.Map;
-    /// <summary>
-    /// Events bruh
-    /// </summary>
-    internal sealed class BulletHoleHandler
+
+    internal sealed class CassieAnnouncementHandler
     {
-        public void OnPlacingBulletHole(PlacingBulletHoleEventArgs ev)
+        public CassieAnnouncementHandler()
         {
-            Log.Info("Bullet hole placed at " + ev.Position);
+            Cassie.SendingCassieMessage += OnSendingCassieMessage;
+        }
+
+        private void OnSendingCassieMessage(SendingCassieMessageEventArgs ev)
+        {
+            Console.WriteLine("CASSIE Announcement:");
+            Console.WriteLine($"Words: {ev.Words}");
+            Console.WriteLine($"MakeHold: {ev.MakeHold}");
+            Console.WriteLine($"MakeNoise: {ev.MakeNoise}");
+            Console.WriteLine($"IsAllowed: {ev.IsAllowed}");
         }
     }
 }
