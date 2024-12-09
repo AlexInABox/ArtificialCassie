@@ -16,9 +16,8 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
-            // Wait for 1 second before clearing
-            //await Task.Delay(50);
-            const int MAX_DELAY = 50;
+            // Wait before clearing
+            const int MAX_DELAY = 1000;
             int waited_for = 0;
             while (!Cassie.IsSpeaking && waited_for < MAX_DELAY)
             {
