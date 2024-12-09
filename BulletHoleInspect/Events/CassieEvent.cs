@@ -21,6 +21,7 @@ namespace BulletHoleInspect.Events
             {
                 AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
             }
+            catch () { }
             AudioController.PlayAudioFromFile("/home/container/.config/EXILED/Plugins/welcome.ogg");
 
 
