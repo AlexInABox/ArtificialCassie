@@ -1,5 +1,6 @@
 namespace BulletHoleInspect.Utils
 {
+    using System.Threading.Tasks;
     using Exiled.API.Features;
 
     internal sealed class ElevenlabsWrapper
