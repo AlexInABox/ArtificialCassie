@@ -19,9 +19,8 @@ namespace BulletHoleInspect.Utils
             string fullFilePath = Path.Combine(savePath, fileName);
             Directory.CreateDirectory(savePath);
 
-            if (!File.Exists(fullFilePath))
+            if (!File.Exists(fullFilePath))  // Check if file already exists
             {
-
                 var payload = new
                 {
                     text = text,
@@ -42,8 +41,14 @@ namespace BulletHoleInspect.Utils
                 {
                     try
                     {
+                        // Save the received data to the file
                         File.WriteAllBytes(fullFilePath, request.downloadHandler.data);
                         Log.Info($"Voiceline saved to: {fullFilePath}");
+
+                        // After saving, play the audio file
+                        Log.Info($"Playing audio shortly: {fullFilePath}");
+                        AudioPlayerWrapper.PlayAudioFromFile(fullFilePath);  // Call to play the audio
+
                     }
                     catch (Exception ex)
                     {
@@ -55,9 +60,12 @@ namespace BulletHoleInspect.Utils
                     Log.Error($"Failed to generate voiceline. Error: {request.error}");
                 }
             }
-
-            Log.Info($"Playing audio shortly: {fullFilePath}");
-
+            else
+            {
+                // If file already exists, play it directly
+                Log.Info($"File already exists, playing the existing voiceline: {fullFilePath}");
+                AudioPlayerWrapper.PlayAudioFromFile(fullFilePath);  // Play the already existing file
+            }
         }
 
         private static string ComputeMD5(string input)

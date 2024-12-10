@@ -20,16 +20,6 @@ namespace BulletHoleInspect.Events
             // Generate the voiceline asynchronously
             Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(ev.Words));
 
-            try
-            {
-                AudioController.SpawnDummy(99, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
-            }
-            catch (System.Exception)
-            {
-                // Handle exception silently or leave empty
-            }
-            AudioController.PlayAudioFromFile("/home/container/.config/EXILED/Plugins/welcome.ogg");
-
             // Clear constantly for 2 seconds
             const int MAX_DELAY = 2000;
             int waited_for = 0;
