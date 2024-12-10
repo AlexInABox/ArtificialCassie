@@ -26,7 +26,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
           Expand-Archive -Path Dev.zip -DestinationPath ${{ env.REFERENCES_PATH }}
-          Invoke-WebRequest -Uri "https://github.com/Edren-Baton-Team/AudioPlayer/releases/download/v3.1.8/AudioPlayer.dll" -OutFile "${{ env.REFERENCES_PATH }}/AudioPlayer.dll"
+          Invoke-WebRequest -Uri ((Invoke-RestMethod -Uri "https://api.github.com/repos/Edren-Baton-Team/AudioPlayer/releases/latest").assets | Where-Object { $_.name -eq "AudioPlayer.dll" } | Select-Object -ExpandProperty browser_download_url) -OutFile "${{ env.REFERENCES_PATH }}/AudioPlayer.dll"
 
       - name: Setup MSBuild.exe
         uses: microsoft/Setup-MSBuild@v2
