@@ -20,10 +20,10 @@ namespace BulletHoleInspect.Utils
                     // Perform the conversion with FFMpegCore
                     FFMpegArguments
                         .FromFileInput(filePath)
-                        .OutputToFile(oggFilePath, true, options => options
+                        .OutputToFile(oggFilePath, bool, options => options
                             .WithAudioCodec("libvorbis")
                             .WithAudioSamplingRate(48000)
-                            .WithAudioChannels(1))
+                            .WithAudioFilters(filter => filter.Pan("mono", "c0 < 0.9 * c0 + 0.1 * c1")))
                         .ProcessSynchronously();
 
                     Log.Info($"Successfully converted the file to: {oggFilePath}");
