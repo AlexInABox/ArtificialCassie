@@ -15,7 +15,7 @@ namespace ArtificialCassie.Events
             Log.Info($"Words: {ev.Words}");
 
             // Generate the voiceline asynchronously
-            Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(ev.Words));
+            Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(NormalizeCassie.Normalize(ev.Words)));
 
             // Clear constantly for 2 seconds
             const int MAX_DELAY = 2000;
