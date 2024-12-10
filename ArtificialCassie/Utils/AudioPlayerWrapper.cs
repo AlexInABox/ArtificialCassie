@@ -29,7 +29,7 @@ namespace ArtificialCassie.Utils
             AudioController.PlayAudioFromFile(filePath, false, 100, VoiceChatChannel.Proximity, false, false, true, randomDummyId);
 
             // Wait for 5 seconds before removing the dummy
-            await Task.Delay(15000);  // 10000ms = 10 seconds
+            await Task.Delay(60000);  // 10000ms = 10 seconds
 
             try
             {
