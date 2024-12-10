@@ -1,4 +1,4 @@
-namespace BulletHoleInspect.Utils
+namespace ArtificialCassie.Utils
 {
     using System;
     using System.IO;
@@ -24,16 +24,16 @@ namespace BulletHoleInspect.Utils
                 var payload = new
                 {
                     text = text,
-                    model_id = BulletHoleInspect.Instance.Config.model_id
+                    model_id = ArtificialCassie.Instance.Config.model_id
                 };
 
                 UnityWebRequest request = UnityWebRequest.Put(
-                    $"https://api.elevenlabs.io/v1/text-to-speech/{BulletHoleInspect.Instance.Config.voice_id}",
+                    $"https://api.elevenlabs.io/v1/text-to-speech/{ArtificialCassie.Instance.Config.voice_id}",
                     JsonConvert.SerializeObject(payload)
                 );
                 request.method = "POST";
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("xi-api-key", BulletHoleInspect.Instance.Config.elevenlabs_api_key);
+                request.SetRequestHeader("xi-api-key", ArtificialCassie.Instance.Config.elevenlabs_api_key);
 
                 yield return Timing.WaitUntilDone(request.SendWebRequest());
 

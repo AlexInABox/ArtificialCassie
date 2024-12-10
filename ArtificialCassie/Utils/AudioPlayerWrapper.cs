@@ -1,4 +1,4 @@
-namespace BulletHoleInspect.Utils
+namespace ArtificialCassie.Utils
 {
     using System.Threading.Tasks;
     using Exiled.API.Features;

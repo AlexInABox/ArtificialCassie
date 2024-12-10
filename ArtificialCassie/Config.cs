@@ -1,4 +1,4 @@
-namespace BulletHoleInspect
+namespace ArtificialCassie
 {
     using System.ComponentModel;
     using System.IO;

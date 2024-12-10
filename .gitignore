@@ -261,5 +261,7 @@ __pycache__/
 *.pyc
 
 #Custom
-BulletHoleInspect/.vscode 
-BulletHoleInspect/bin
+ArtificialCassie/.vscode 
+ArtificialCassie/bin
+
+.vscode

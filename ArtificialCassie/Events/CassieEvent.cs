@@ -1,4 +1,4 @@
-namespace BulletHoleInspect.Events
+namespace ArtificialCassie.Events
 {
     using System.Threading.Tasks;
     using Exiled.API.Features;

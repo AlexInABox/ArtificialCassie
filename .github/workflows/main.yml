@@ -1,4 +1,4 @@
-name: RoundReports Build
+name: ArtificialCassie Build
 on:
   push:
     branches:
@@ -35,10 +35,10 @@ jobs:
 
       - name: Build
         run: |
-          msbuild BulletHoleInspect\BulletHoleInspect.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
+          msbuild ArtificialCassie\ArtificialCassie.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Round Reports
-          path: "BulletHoleInspect/bin/Release/net4.8.1/BulletHoleInspect.dll"
+          name: ArtificialCassie
+          path: "ArtificialCassie/bin/Release/net4.8.1/ArtificialCassie.dll"

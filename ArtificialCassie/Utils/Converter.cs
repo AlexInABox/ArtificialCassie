@@ -1,4 +1,4 @@
-namespace BulletHoleInspect.Utils
+namespace ArtificialCassie.Utils
 {
     using System;
     using System.IO;
