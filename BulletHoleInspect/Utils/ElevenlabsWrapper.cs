@@ -6,6 +6,7 @@ namespace BulletHoleInspect.Utils
     {
         public static async void GenerateVoiceline(string text)
         {
+            await Task.Delay(1000);
             Log.Info(text);
             // Add your implementation here
         }
