@@ -28,7 +28,7 @@ namespace BulletHoleInspect.Utils
                     model_id = BulletHoleInspect.Instance.Config.model_id
                 };
 
-                UnityWebRequest request = UnityWebRequest.Post(
+                UnityWebRequest request = UnityWebRequest.Put(
                     $"https://api.elevenlabs.io/v1/text-to-speech/{BulletHoleInspect.Instance.Config.voice_id}",
                     JsonConvert.SerializeObject(payload)
                 );
