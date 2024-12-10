@@ -10,7 +10,7 @@ namespace BulletHoleInspect.Utils
     {
         public static async Task Convert(string filePath)
         {
-            GlobalFFOptions.Configure(new FFOptions { BinaryFolder = "./dependencies", TemporaryFilesFolder = "./dependencies/tmp" });
+            GlobalFFOptions.Configure(new FFOptions { BinaryFolder = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg", TemporaryFilesFolder = "/home/container/.config/EXILED/Plugins/dependencies/tmp" });
 
             // Define the path for the .ogg file, removing the extension from the original file
             string oggFilePath = Path.Combine(Path.GetDirectoryName(filePath), Path.GetFileNameWithoutExtension(filePath) + ".ogg");
