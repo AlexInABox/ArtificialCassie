@@ -3,14 +3,15 @@ namespace BulletHoleInspect.Utils
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using FFMpegCore;
     using Exiled.API.Features;
+    using System.Diagnostics;
 
     internal sealed class Converter
     {
         public static async Task Convert(string filePath)
         {
-            GlobalFFOptions.Configure(new FFOptions { BinaryFolder = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg", TemporaryFilesFolder = "/home/container/.config/EXILED/Plugins/dependencies/tmp" });
+            string ffmpegPath = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg/ffmpeg"; // Path to ffmpeg binary
+            string tempFolderPath = "/home/container/.config/EXILED/Plugins/dependencies/tmp";
 
             // Define the path for the .ogg file, removing the extension from the original file
             string oggFilePath = Path.Combine(Path.GetDirectoryName(filePath), Path.GetFileNameWithoutExtension(filePath) + ".ogg");
@@ -19,17 +20,40 @@ namespace BulletHoleInspect.Utils
             {
                 try
                 {
+                    // Build the ffmpeg command arguments
+                    string arguments = $"-i \"{filePath}\" -c:a libvorbis -ar 48000 -filter_complex \"pan=mono|c0=0.9*c0+0.1*c1\" \"{oggFilePath}\"";
 
-                    await FFMpegArguments
-                        .FromFileInput(filePath)  // Input file
-                        .OutputToFile(oggFilePath, overwrite: true, options => options
-                            .WithAudioCodec("libvorbis")
-                            .WithAudioSamplingRate(48000)
-                            .WithAudioFilters(filter => filter.Pan("mono", "c0 < 0.9 * c0 + 0.1 * c1")))
-                        .ProcessAsynchronously();  // Perform the conversion asynchronously
+                    // Create the process to run the ffmpeg command
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        FileName = ffmpegPath,
+                        Arguments = arguments,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
 
+                    using (Process process = Process.Start(startInfo))
+                    {
+                        if (process != null)
+                        {
+                            // Read the output and error streams asynchronously
+                            string output = await process.StandardOutput.ReadToEndAsync();
+                            string error = await process.StandardError.ReadToEndAsync();
 
-                    Log.Info($"Successfully converted the file to: {oggFilePath}");
+                            await process.WaitForExitAsync();  // Wait for the conversion process to finish
+
+                            if (process.ExitCode == 0)
+                            {
+                                Log.Info($"Successfully converted the file to: {oggFilePath}");
+                            }
+                            else
+                            {
+                                Log.Error($"FFmpeg conversion failed: {error}");
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
