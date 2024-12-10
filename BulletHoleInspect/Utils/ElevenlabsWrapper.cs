@@ -6,6 +6,8 @@ namespace BulletHoleInspect.Utils
     using UnityEngine.Networking;
     using Newtonsoft.Json;
     using Exiled.API.Features;
+    using System.Collections.Generic; // For IEnumerator<>
+
 
     internal sealed class ElevenlabsWrapper
     {
