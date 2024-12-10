@@ -4,7 +4,7 @@ namespace BulletHoleInspect.Utils
 
     internal sealed class ElevenlabsWrapper
     {
-        public static async Task GenerateVoiceline(string text)
+        public static async GenerateVoiceline(string text)
         {
             Log.Info(text);
             // Add your implementation here
