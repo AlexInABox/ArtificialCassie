@@ -13,6 +13,7 @@ namespace ArtificialCassie.Events
         {
             Log.Info("Intercepted a C.A.S.S.I.E announcement:");
             Log.Info($"Words: {ev.Words}");
+            Log.Info($"Words: {NormalizeCassie.Normalize(ev.Words)}");
 
             // Generate the voiceline asynchronously
             Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(NormalizeCassie.Normalize(ev.Words)));
