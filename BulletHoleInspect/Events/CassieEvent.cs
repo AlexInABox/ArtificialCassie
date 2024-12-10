@@ -4,7 +4,7 @@ namespace BulletHoleInspect.Events
     using Exiled.API.Features;
     using Exiled.Events.EventArgs.Cassie;
     using AudioPlayer.API;
-    using BulletHoleInspect.Utils;
+    using Utils;
 
     internal sealed class CassieHandler
     {
