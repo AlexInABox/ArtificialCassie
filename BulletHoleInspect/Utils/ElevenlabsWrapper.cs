@@ -3,19 +3,19 @@ namespace BulletHoleInspect.Utils
     using System;
     using System.IO;
     using System.Text;
+    using System.Security.Cryptography;
     using UnityEngine.Networking;
     using Newtonsoft.Json;
     using Exiled.API.Features;
     using MEC;
-    using System.Collections.Generic; // For IEnumerator<>
-
+    using System.Collections.Generic;
 
     internal sealed class ElevenlabsWrapper
     {
         public static IEnumerator<float> GenerateVoiceline(string text)
         {
             string savePath = "/home/container/.config/EXILED/Plugins/audio/AI-CASSIE/";
-            string fileName = $"{Guid.NewGuid()}.wav";
+            string fileName = $"{ComputeMD5(text)}.wav";
             Directory.CreateDirectory(savePath);
 
             var payload = new
@@ -24,7 +24,7 @@ namespace BulletHoleInspect.Utils
                 model_id = BulletHoleInspect.Instance.Config.model_id
             };
 
-            UnityWebRequest request = UnityWebRequest.Put(
+            UnityWebRequest request = UnityWebRequest.Post(
                 $"https://api.elevenlabs.io/v1/text-to-speech/{BulletHoleInspect.Instance.Config.voice_id}",
                 JsonConvert.SerializeObject(payload)
             );
@@ -34,7 +34,7 @@ namespace BulletHoleInspect.Utils
 
             yield return Timing.WaitUntilDone(request.SendWebRequest());
 
-            if (request.result is UnityWebRequest.Result.Success)
+            if (request.result == UnityWebRequest.Result.Success)
             {
                 try
                 {
@@ -49,6 +49,21 @@ namespace BulletHoleInspect.Utils
             else
             {
                 Log.Error($"Failed to generate voiceline. Error: {request.error}");
+            }
+        }
+
+        private static string ComputeMD5(string input)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                return sb.ToString();
             }
         }
     }
