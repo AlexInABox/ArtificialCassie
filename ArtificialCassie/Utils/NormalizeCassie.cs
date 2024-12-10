@@ -3,7 +3,7 @@ namespace ArtificialCassie.Utils
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
-    using System.Text.Json;
+    using Newtonsoft.Json;
 
     public static class NormalizeCassie
     {
@@ -19,7 +19,7 @@ namespace ArtificialCassie.Utils
             using (var reader = new StreamReader(stream ?? throw new FileNotFoundException("Embedded resource not found.")))
             {
                 var json = reader.ReadToEnd();
-                replacements = JsonSerializer.Deserialize<Dictionary<string, string>>(json) ?? new Dictionary<string, string>();
+                replacements = JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ?? new Dictionary<string, string>();
             }
         }
 
