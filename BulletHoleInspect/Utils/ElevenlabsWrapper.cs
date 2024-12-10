@@ -44,11 +44,6 @@ namespace BulletHoleInspect.Utils
                         // Save the received data to the file
                         File.WriteAllBytes(fullFilePath, request.downloadHandler.data);
                         Log.Info($"Voiceline saved to: {fullFilePath}");
-
-                        // After saving, play the audio file
-                        Log.Info($"Playing audio shortly: {fullFilePath}");
-                        AudioPlayerWrapper.PlayAudioFromFile(fullFilePath);  // Call to play the audio
-
                     }
                     catch (Exception ex)
                     {
@@ -60,12 +55,10 @@ namespace BulletHoleInspect.Utils
                     Log.Error($"Failed to generate voiceline. Error: {request.error}");
                 }
             }
-            else
-            {
-                // If file already exists, play it directly
-                Log.Info($"File already exists, playing the existing voiceline: {fullFilePath}");
-                AudioPlayerWrapper.PlayAudioFromFile(fullFilePath);  // Play the already existing file
-            }
+            // If file already exists, play it directly
+            Log.Info("Converting to .ogg");
+            Converter.Convert(fullFilePath);
+
         }
 
         private static string ComputeMD5(string input)
