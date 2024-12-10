@@ -6,6 +6,7 @@ namespace BulletHoleInspect.Utils
     using UnityEngine.Networking;
     using Newtonsoft.Json;
     using Exiled.API.Features;
+    using MEC;
     using System.Collections.Generic; // For IEnumerator<>
 
 
@@ -29,7 +30,7 @@ namespace BulletHoleInspect.Utils
             );
             request.method = "POST";
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("xi-api-key", config.elevenlabs_api_key);
+            request.SetRequestHeader("xi-api-key", BulletHoleInspect.Instance.Config.elevenlabs_api_key);
 
             yield return Timing.WaitUntilDone(request.SendWebRequest());
 
