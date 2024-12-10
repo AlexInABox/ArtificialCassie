@@ -13,10 +13,13 @@ namespace ArtificialCassie.Events
         {
             Log.Info("Intercepted a C.A.S.S.I.E announcement:");
             Log.Info($"Words: {ev.Words}");
-            Log.Info($"Words: {NormalizeCassie.Normalize(ev.Words)}");
+
+            // Use the async Normalize method
+            string normalizedWords = await NormalizeCassie.NormalizeAsync(ev.Words);
+            Log.Info($"Normalized Words: {normalizedWords}");
 
             // Generate the voiceline asynchronously
-            Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(NormalizeCassie.Normalize(ev.Words)));
+            Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(normalizedWords));
 
             // Clear constantly for 2 seconds
             const int MAX_DELAY = 2000;
