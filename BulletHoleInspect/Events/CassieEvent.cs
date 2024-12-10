@@ -16,7 +16,7 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
 
-            await ElevenlabsWrapper.GenerateVoiceline(ev.Words);
+            ElevenlabsWrapper.GenerateVoiceline(ev.Words);
 
             try
             {
