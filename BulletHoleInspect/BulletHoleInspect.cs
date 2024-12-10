@@ -19,7 +19,7 @@
 
         public override void OnEnabled()
         {
-            if (Config.elevenlabs_api_key == "")
+            if (Config.elevenlabs_api_key == '')
             {
                 Log.Warn($"No Elevenlabs API key detected! Please generate one first at: https://elevenlabs.io/app/settings/api-keys");
                 return;
