@@ -6,7 +6,6 @@ namespace BulletHoleInspect.Utils
     using UnityEngine.Networking;
     using Newtonsoft.Json;
     using Exiled.API.Features;
-    using MEC;
 
     internal sealed class ElevenlabsWrapper
     {
