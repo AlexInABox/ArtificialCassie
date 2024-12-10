@@ -33,7 +33,7 @@ namespace BulletHoleInspect.Utils
             try
             {
                 // Remove the dummy after 5 seconds
-                AudioController.RemoveDummy(randomDummyId);
+                AudioController.DisconnectDummy(randomDummyId);
             }
             catch (System.Exception ex)
             {

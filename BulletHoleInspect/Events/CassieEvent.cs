@@ -11,11 +11,8 @@ namespace BulletHoleInspect.Events
     {
         public async void OnSendingCassieMessage(SendingCassieMessageEventArgs ev)
         {
-            Log.Info("CASSIE Announcement:");
+            Log.Info("Intercepted a C.A.S.S.I.E announcement:");
             Log.Info($"Words: {ev.Words}");
-            Log.Info($"MakeHold: {ev.MakeHold}");
-            Log.Info($"MakeNoise: {ev.MakeNoise}");
-            Log.Info($"IsAllowed: {ev.IsAllowed}");
 
             // Generate the voiceline asynchronously
             Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(ev.Words));
