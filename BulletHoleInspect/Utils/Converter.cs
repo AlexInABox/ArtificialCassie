@@ -18,14 +18,13 @@ namespace BulletHoleInspect.Utils
                 try
                 {
                     // Perform the conversion with FFMpegCore
-                    await FFMpegArguments
-                        .FromFileInput(filePath)  // Input file
-                        .OutputToFile(oggFilePath, true, options => options
-                            .WithAudioSampleRate(48000)  // Set the sample rate to 48000 Hz
-                            .WithAudioChannels(1)        // Set mono audio channel
-                            .WithAudioCodec("libopus")   // Set the audio codec to Opus for .ogg
-                            .WithFormat(AudioFormat.Ogg)) // Set the output format to .ogg
-                        .ProcessAsynchronously();  // Perform the conversion asynchronously
+                    FFMpegArguments
+                        .FromFileInput(filePath)
+                        .OutputToFile(oggFilePath, options => options
+                            .WithAudioCodec("libvorbis")
+                            .WithAudioSamplingRate(48000)
+                            .WithAudioFilters(filter => filter.Pan("mono", "c0 < 0.9 * c0 + 0.1 * c1")))
+                        .ProcessSynchronously();
 
                     Log.Info($"Successfully converted the file to: {oggFilePath}");
                 }
