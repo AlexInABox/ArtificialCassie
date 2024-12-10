@@ -13,7 +13,7 @@ namespace BulletHoleInspect.Utils
         {
             // Access the config from the singleton instance
             var config = BulletHoleInspect.Instance.Config;
-
+            Log.Warn("Starting to do stuff!");
             if (string.IsNullOrWhiteSpace(config.elevenlabs_api_key))
             {
                 Log.Warn("Elevenlabs API key is missing. Please configure it in your settings.");
