@@ -42,7 +42,7 @@ namespace BulletHoleInspect.Utils
                             string output = await process.StandardOutput.ReadToEndAsync();
                             string error = await process.StandardError.ReadToEndAsync();
 
-                            await process.WaitForExitAsync();  // Wait for the conversion process to finish
+                            process.WaitForExit();  // Wait for the conversion process to finish
 
                             if (process.ExitCode == 0)
                             {
