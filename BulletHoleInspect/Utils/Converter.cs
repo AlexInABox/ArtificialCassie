@@ -31,7 +31,8 @@ namespace BulletHoleInspect.Utils
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
                         UseShellExecute = false,
-                        CreateNoWindow = true
+                        CreateNoWindow = true,
+                        WorkingDirectory = Path.GetDirectoryName(ffmpegPath) // Ensure valid working directory
                     };
 
                     using (Process process = Process.Start(startInfo))
