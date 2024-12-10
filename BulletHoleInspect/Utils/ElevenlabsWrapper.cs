@@ -16,40 +16,48 @@ namespace BulletHoleInspect.Utils
         {
             string savePath = "/home/container/.config/EXILED/Plugins/audio/AI-CASSIE/";
             string fileName = $"{ComputeMD5(text)}.wav";
+            string fullFilePath = Path.Combine(savePath, fileName);
             Directory.CreateDirectory(savePath);
 
-            var payload = new
+            if (!File.Exists(fullFilePath))
             {
-                text = text,
-                model_id = BulletHoleInspect.Instance.Config.model_id
-            };
 
-            UnityWebRequest request = UnityWebRequest.Post(
-                $"https://api.elevenlabs.io/v1/text-to-speech/{BulletHoleInspect.Instance.Config.voice_id}",
-                JsonConvert.SerializeObject(payload)
-            );
-            request.method = "POST";
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("xi-api-key", BulletHoleInspect.Instance.Config.elevenlabs_api_key);
-
-            yield return Timing.WaitUntilDone(request.SendWebRequest());
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                try
+                var payload = new
                 {
-                    File.WriteAllBytes(Path.Combine(savePath, fileName), request.downloadHandler.data);
-                    Log.Info($"Voiceline saved to: {Path.Combine(savePath, fileName)}");
+                    text = text,
+                    model_id = BulletHoleInspect.Instance.Config.model_id
+                };
+
+                UnityWebRequest request = UnityWebRequest.Post(
+                    $"https://api.elevenlabs.io/v1/text-to-speech/{BulletHoleInspect.Instance.Config.voice_id}",
+                    JsonConvert.SerializeObject(payload)
+                );
+                request.method = "POST";
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("xi-api-key", BulletHoleInspect.Instance.Config.elevenlabs_api_key);
+
+                yield return Timing.WaitUntilDone(request.SendWebRequest());
+
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    try
+                    {
+                        File.WriteAllBytes(fullFilePath, request.downloadHandler.data);
+                        Log.Info($"Voiceline saved to: {fullFilePath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"Failed to save voiceline: {ex.Message}");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Log.Error($"Failed to save voiceline: {ex.Message}");
+                    Log.Error($"Failed to generate voiceline. Error: {request.error}");
                 }
             }
-            else
-            {
-                Log.Error($"Failed to generate voiceline. Error: {request.error}");
-            }
+
+            Log.Info($"Playing audio shortly: {fullFilePath}");
+
         }
 
         private static string ComputeMD5(string input)
