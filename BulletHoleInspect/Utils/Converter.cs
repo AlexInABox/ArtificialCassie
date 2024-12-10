@@ -20,7 +20,7 @@ namespace BulletHoleInspect.Utils
 
                     await FFMpegArguments
                         .FromFileInput(filePath)  // Input file
-                        .OutputToFile(oggFilePath, true, options => options
+                        .OutputToFile(oggFilePath, overwrite: true, options => options
                             .WithAudioCodec("libvorbis")
                             .WithAudioSamplingRate(48000)
                             .WithAudioFilters(filter => filter.Pan("mono", "c0 < 0.9 * c0 + 0.1 * c1")))
