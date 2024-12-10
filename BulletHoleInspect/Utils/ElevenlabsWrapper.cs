@@ -35,7 +35,7 @@ namespace BulletHoleInspect.Utils
 
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {config.elevenlabs_api_key}");
+                client.DefaultRequestHeaders.Add("xi-api-key", config.elevenlabs_api_key);
                 client.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
                 try
