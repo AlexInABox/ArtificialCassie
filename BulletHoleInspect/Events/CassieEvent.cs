@@ -6,6 +6,7 @@ namespace BulletHoleInspect.Events
     using Exiled.API.Features.Items;
     using Exiled.Events.EventArgs.Cassie;
     using AudioPlayer.API;
+    using BulletHoleInspect.Utils;
 
     internal sealed class CassieHandler
     {
@@ -16,6 +17,8 @@ namespace BulletHoleInspect.Events
             Log.Info($"MakeHold: {ev.MakeHold}");
             Log.Info($"MakeNoise: {ev.MakeNoise}");
             Log.Info($"IsAllowed: {ev.IsAllowed}");
+
+            ElevenlabsWrapper.GenerateVoiceline(ev.Words);
 
             try
             {

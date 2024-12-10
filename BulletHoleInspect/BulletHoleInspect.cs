@@ -18,8 +18,14 @@
 
         public override void OnEnabled()
         {
+            if (Config.String == "")
+            {
+                Log.Warn($"No Elevenlabs API key detected! Please generate one first at: https://elevenlabs.io/app/settings/api-keys");
+                return;
+            }
+
             Singleton = this;
-            Log.Info("BulletHoleInspect has been enabled!");
+            Log.Info("AI-CASSIE has been enabled!");
             cassieHandler = new CassieHandler();
             Exiled.Events.Handlers.Cassie.SendingCassieMessage += cassieHandler.OnSendingCassieMessage;
 
@@ -28,7 +34,7 @@
 
         public override void OnDisabled()
         {
-            Log.Info("BulletHoleInspect has been disabled!");
+            Log.Info("AI-CASSIE has been disabled!");
 
             Exiled.Events.Handlers.Cassie.SendingCassieMessage -= cassieHandler.OnSendingCassieMessage;
             base.OnDisabled();
