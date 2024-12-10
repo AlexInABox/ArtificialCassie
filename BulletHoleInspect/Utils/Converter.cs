@@ -23,7 +23,8 @@ namespace BulletHoleInspect.Utils
                         .OutputToFile(oggFilePath, true, options => options
                             .WithAudioSampleRate(48000)  // Set the sample rate to 48000 Hz
                             .WithAudioChannels(1)        // Set mono audio channel
-                            .WithFormat(FFMpegCore.Format.ogg)) // Set the output format to .ogg
+                            .WithAudioCodec("libopus")   // Set the audio codec to Opus for .ogg
+                            .WithFormat(AudioFormat.Ogg)) // Set the output format to .ogg
                         .ProcessAsynchronously();  // Perform the conversion asynchronously
 
                     Log.Info($"Successfully converted the file to: {oggFilePath}");
