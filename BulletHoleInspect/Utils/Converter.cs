@@ -23,7 +23,7 @@ namespace BulletHoleInspect.Utils
                         .OutputToFile(oggFilePath, options => options
                             .WithAudioCodec("libvorbis")
                             .WithAudioSamplingRate(48000)
-                            .WithAudioFilters(filter => filter.Pan("mono", "c0 < 0.9 * c0 + 0.1 * c1")))
+                            .WithAudioFilters(filter => filter.Pan("mono", "c0=c0")))
                         .ProcessSynchronously();
 
                     Log.Info($"Successfully converted the file to: {oggFilePath}");
