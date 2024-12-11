@@ -14,7 +14,7 @@ namespace ArtificialCassie.Events
             Log.Info("Intercepted a C.A.S.S.I.E announcement");
             Log.Debug($"Words: {ev.Words}");
 
-            if (ArtificialCassie.Instance.Config.ReplaceEverything || !ev.isAllowed)
+            if (ArtificialCassie.Instance.Config.ReplaceEverything || !ev.IsAllowed)
             {
                 Log.Debug("Trying to replace announcement!");
 
