@@ -13,6 +13,10 @@ namespace ArtificialCassie.Events
         {
             Log.Info("Intercepted a C.A.S.S.I.E announcement");
             Log.Debug($"Words: {ev.Words}");
+            Log.Debug($"IsAllowed: {ev.IsAllowed}");
+            Log.Debug($"MakeHold: {ev.MakeHold}");
+            Log.Debug($"MakeNoise: {ev.MakeNoise}");
+            Log.Debug($"ArtificialCassie.Instance.Config.ReplaceEverything: {ArtificialCassie.Instance.Config.ReplaceEverything}");
 
             if (ArtificialCassie.Instance.Config.ReplaceEverything || !ev.IsAllowed)
             {
