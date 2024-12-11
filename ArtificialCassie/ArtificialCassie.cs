@@ -26,7 +26,7 @@
             }
 
             Singleton = this;
-            Log.Info("AI-CASSIE has been enabled!");
+            Log.Info("ArtificialCassie has been enabled!");
             cassieHandler = new CassieHandler();
             Exiled.Events.Handlers.Cassie.SendingCassieMessage += cassieHandler.OnSendingCassieMessage;
 
@@ -35,7 +35,7 @@
 
         public override void OnDisabled()
         {
-            Log.Info("AI-CASSIE has been disabled!");
+            Log.Info("ArtificialCassie has been disabled!");
 
             Exiled.Events.Handlers.Cassie.SendingCassieMessage -= cassieHandler.OnSendingCassieMessage;
             base.OnDisabled();

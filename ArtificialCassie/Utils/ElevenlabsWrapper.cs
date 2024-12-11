@@ -43,7 +43,7 @@ namespace ArtificialCassie.Utils
                     {
                         // Save the received data to the file
                         File.WriteAllBytes(fullFilePath, request.downloadHandler.data);
-                        Log.Info($"Voiceline saved to: {fullFilePath}");
+                        Log.Debug($"Voiceline saved to: {fullFilePath}");
                     }
                     catch (Exception ex)
                     {
@@ -56,7 +56,7 @@ namespace ArtificialCassie.Utils
                 }
             }
             // If file already exists, play it directly
-            Log.Info("Converting to .ogg");
+            Log.Debug("Converting to .ogg");
             Converter.Convert(fullFilePath);
 
         }

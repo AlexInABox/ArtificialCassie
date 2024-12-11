@@ -47,7 +47,7 @@ namespace ArtificialCassie.Utils
 
                             if (process.ExitCode == 0)
                             {
-                                Log.Info($"Successfully converted the file to: {oggFilePath}");
+                                Log.Debug($"Successfully converted the file to: {oggFilePath}");
                             }
                             else
                             {
@@ -64,11 +64,11 @@ namespace ArtificialCassie.Utils
             }
             else
             {
-                Log.Info($"The file {oggFilePath} already exists. Skipping conversion.");
+                Log.Debug($"The file {oggFilePath} already exists. Skipping conversion.");
             }
 
             // Play the converted audio file
-            Log.Info("Playing file now...");
+            Log.Debug("Playing file now...");
             AudioPlayerWrapper.PlayAudioFromFile(oggFilePath);
         }
     }
