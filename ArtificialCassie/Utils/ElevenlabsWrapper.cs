@@ -19,7 +19,7 @@ namespace ArtificialCassie.Utils
             string fullFilePath = Path.Combine(savePath, fileName);
             Directory.CreateDirectory(savePath);
 
-            if (!File.Exists(fullFilePath))  // Check if file already exists
+            if (!File.Exists(fullFilePath) || !ArtificialCassie.Instance.Config.ReuseVoicelines)  // Check if file already exists
             {
                 var payload = new
                 {
