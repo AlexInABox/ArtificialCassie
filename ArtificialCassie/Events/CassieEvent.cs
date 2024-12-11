@@ -18,7 +18,7 @@ namespace ArtificialCassie.Events
             Log.Debug($"MakeNoise: {ev.MakeNoise}");
             Log.Debug($"ArtificialCassie.Instance.Config.ReplaceEverything: {ArtificialCassie.Instance.Config.ReplaceEverything}");
 
-            if (ArtificialCassie.Instance.Config.ReplaceEverything || !ev.IsAllowed)
+            if (ArtificialCassie.Instance.Config.ReplaceEverything || ev.Words.StartsWith("#"))
             {
                 Log.Debug("Trying to replace announcement!");
 

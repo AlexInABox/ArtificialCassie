@@ -32,6 +32,11 @@ namespace ArtificialCassie.Utils
 
         public static async Task<string> NormalizeAsync(string text)
         {
+            if (text.StartsWith("#"))
+            {
+                text = text.Substring(1); //if theres a # at the first index remove it since we used it to initiate this process
+            }
+
             // Ensure replacements are loaded (necessary if Normalize is called immediately after startup)
             while (replacements == null || replacements.Count == 0)
             {

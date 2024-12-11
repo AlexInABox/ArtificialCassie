@@ -25,7 +25,7 @@ namespace ArtificialCassie
         public string voice_id { get; set; } = "tTZ0TVc9Q1bbWngiduLK";
         public string model_id { get; set; } = "eleven_turbo_v2_5";
 
-        [Description("Should every C.A.S.S.I.E. voiceline be replaced, or only custom messages that C.A.S.S.I.E. WOULDNT be able to speak.")]
+        [Description("Should every C.A.S.S.I.E. voiceline be replaced, or only custom messages that you prepend with a '#'?")]
         public bool ReplaceEverything { get; set; } = false;
 
         [Description("I recommend to leave this on. This will reuse previously generated voicelines to save YOU money and tokens!")]
