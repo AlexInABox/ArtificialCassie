@@ -14,7 +14,7 @@ namespace ArtificialCassie.Utils
     {
         public static IEnumerator<float> GenerateVoiceline(string text)
         {
-            string savePath = "/home/container/.config/EXILED/Plugins/audio/AI-CASSIE/";
+            string savePath = "/home/container/.config/EXILED/Plugins/audio/ArtificialCassie/";
             string fileName = $"{ComputeMD5(text)}.wav";
             string fullFilePath = Path.Combine(savePath, fileName);
             Directory.CreateDirectory(savePath);
