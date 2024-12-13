@@ -20,6 +20,7 @@ namespace ArtificialCassie.Events
 
             if (ArtificialCassie.Instance.Config.ReplaceEverything || ev.Words.StartsWith("#"))
             {
+                ev.IsAllowed = false;
                 Log.Debug("Trying to replace announcement!");
 
                 // Use the async Normalize method
@@ -28,16 +29,6 @@ namespace ArtificialCassie.Events
 
                 // Generate the voiceline asynchronously
                 Timing.RunCoroutine(ElevenlabsWrapper.GenerateVoiceline(normalizedWords));
-
-                // Clear constantly for 2 seconds
-                const int MAX_DELAY = 2000;
-                int waited_for = 0;
-                while (waited_for < MAX_DELAY)
-                {
-                    Cassie.Clear();
-                    waited_for++;
-                    await Task.Delay(1);
-                }
             }
         }
     }
