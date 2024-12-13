@@ -5,7 +5,10 @@ namespace ArtificialCassie.Utils
     using Exiled.API.Features;
     using Exiled.API.Features.Roles;
     using Exiled.Events.EventArgs;
+    using Exiled.Events.EventArgs.Player;
+    using Exiled.Events.Handlers;
     using AudioPlayer.API;
+    using PlayerRoles;
     using System;
     using VoiceChat;
     using UnityEngine;
