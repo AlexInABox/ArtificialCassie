@@ -51,7 +51,7 @@ namespace ArtificialCassie.Utils
 
             audioBot.Position.Set = new Vector3(-9999f, -9999f, -9999f);
 
-
+            await Task.Delay(100);
 
 
             // Play the audio from the provided file path
