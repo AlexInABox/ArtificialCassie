@@ -31,17 +31,8 @@ namespace ArtificialCassie.Utils
                 Log.Error($"Failed to spawn dummy audio player: {ex.Message}");
             }
 
-            Player audioBot;
-            try
-            {
-                // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
-                audioBot = Player.Get(randomDummyId + "@audioplayer");
-
-            }
-            catch (System.Exception ex)
-            {
-                Log.Error($"Couldnt get Player reference: {ex.Message}");
-            }
+            // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
+            audioBot = Player.Get(randomDummyId + "@audioplayer");
 
             try
             {
