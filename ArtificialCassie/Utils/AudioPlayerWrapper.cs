@@ -2,6 +2,7 @@ namespace ArtificialCassie.Utils
 {
     using System.Threading.Tasks;
     using Exiled.API.Enums;
+    using Exiled.API.Features;
     using Exiled.API.Features.Roles;
     using Exiled.Events.EventArgs;
     using AudioPlayer.API;
