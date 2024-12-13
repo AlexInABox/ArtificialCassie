@@ -7,6 +7,7 @@ namespace ArtificialCassie.Utils
     using Exiled.Events.EventArgs;
     using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
+    using AudioPlayer.Other;
     using static AudioPlayer.Plugin;
     using PlayerRoles;
     using System;
