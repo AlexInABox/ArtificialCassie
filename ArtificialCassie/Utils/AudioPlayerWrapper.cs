@@ -49,7 +49,7 @@ namespace ArtificialCassie.Utils
                 Log.Error($"Couldnt set role: {ex.Message}");
             }
 
-            audioBot.Position = new Vector3(-9999f, -9999f, -9999f);
+            audioBot.Position.Set = new Vector3(-9999f, -9999f, -9999f);
 
 
 
