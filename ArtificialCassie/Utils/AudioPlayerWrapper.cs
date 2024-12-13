@@ -8,6 +8,7 @@ namespace ArtificialCassie.Utils
     using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
     using AudioPlayer.Other;
+    using AudioPlayer.Other.Extensions;
     using static AudioPlayer.Plugin;
     using PlayerRoles;
     using System;
@@ -28,8 +29,8 @@ namespace ArtificialCassie.Utils
             int randomDummyId = random.Next(1, 100);  // Generate random number between 1 and 99
 
 
-            FakeConnectionList fakeConnectionList = AudioPlayer.Other.Extensions.SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
-            Player player = AudioPlayer.Other.Extensions.GetAudioBot(fakeConnectionList.audioplayer);
+            FakeConnectionList fakeConnectionList = SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
+            Player player = GetAudioBot(fakeConnectionList.audioplayer);
             if (player != null)
             {
                 player.RoleManager.ServerSetRole(RoleTypeId.Tutorial, RoleChangeReason.Respawn);
