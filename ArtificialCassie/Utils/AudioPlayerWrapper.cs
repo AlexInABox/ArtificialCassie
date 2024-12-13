@@ -10,6 +10,10 @@ namespace ArtificialCassie.Utils
     using static AudioPlayer.Plugin;
     using PlayerRoles;
     using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
     using VoiceChat;
     using UnityEngine;
 
