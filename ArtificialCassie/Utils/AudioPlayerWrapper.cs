@@ -21,16 +21,41 @@ namespace ArtificialCassie.Utils
         {
             int randomDummyId = random.Next(1, 100);  // Generate random number between 1 and 99
 
-            // Spawn dummy audio player with the random ID
-            AudioController.SpawnDummy(randomDummyId, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+            try
+            {
+                // Spawn dummy audio player with the random ID
+                AudioController.SpawnDummy(randomDummyId, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Failed to spawn dummy audio player: {ex.Message}");
+            }
 
-            // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
-            Player audioBot = Player.Get(randomDummyId + "@audioplayer");
+            Player audioBot;
+            try
+            {
+                // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
+                audioBot = Player.Get(randomDummyId + "@audioplayer");
 
-            // Set the new role for the player
-            audioBot.Role.Set(RoleTypeId.Tutorial);
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Couldnt get Player reference: {ex.Message}");
+            }
 
-            audioBot.Position = new Vector3(-9999f, -9999f, -9999f);
+            try
+            {
+                // Set the new role for the player
+                audioBot.Role.Set(RoleTypeId.Tutorial);
+
+                audioBot.Position = new Vector3(-9999f, -9999f, -9999f);
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Couldnt set role or pos: {ex.Message}");
+            }
+
+
 
             // Play the audio from the provided file path
             AudioController.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true, randomDummyId);
