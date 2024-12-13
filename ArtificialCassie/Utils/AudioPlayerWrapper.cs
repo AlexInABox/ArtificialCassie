@@ -32,7 +32,7 @@ namespace ArtificialCassie.Utils
             }
 
             // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
-            audioBot = Player.Get(randomDummyId + "@audioplayer");
+            Player audioBot = Player.Get(randomDummyId + "@audioplayer");
 
             try
             {
