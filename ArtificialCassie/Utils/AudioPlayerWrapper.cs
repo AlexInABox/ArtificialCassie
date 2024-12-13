@@ -30,7 +30,7 @@ namespace ArtificialCassie.Utils
                 Player audioBot = Player.Get(randomDummyId + "@audioplayer");
 
                 // Set the new role for the player
-                audioBot::SetRole(RoleTypeId.Tutorial);
+                audioBot::Role::Set(RoleTypeId.Tutorial);
 
                 audioBot.Position = new Vector3(-9999f, -9999f, -9999f);
             }
