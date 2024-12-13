@@ -7,7 +7,6 @@ namespace ArtificialCassie.Utils
     using Exiled.Events.EventArgs;
     using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
-    using AudioPlayer.Extensions;
     using PlayerRoles;
     using System;
     using VoiceChat;
