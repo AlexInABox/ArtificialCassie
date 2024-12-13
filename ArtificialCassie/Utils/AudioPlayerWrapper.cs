@@ -2,6 +2,8 @@ namespace ArtificialCassie.Utils
 {
     using System.Threading.Tasks;
     using Exiled.API.Features;
+    using Exiled.API.Features.Roles;
+    using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
     using System;
     using VoiceChat;
@@ -19,6 +21,20 @@ namespace ArtificialCassie.Utils
             {
                 // Spawn dummy audio player with the random ID
                 AudioController.SpawnDummy(randomDummyId, "AudioPlayer BOT", "orange", "C.A.S.S.I.E");
+
+                // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
+                Player audioBot = Player.Get(randomDummyId + "@audioplayer");
+                RoleTypeId tutorialRole = RoleTypeId.Tutorial;
+                Vector3 farAway = new Vector3(-9999f, -9999f, -9999f);
+
+                // Set the new role for the player
+                var changingRoleEventArgs = new ChangingRoleEventArgs(player, tutorialRole, RoleChangeReason.RemoteAdmin, RoleSpawnFlags.None);
+                Exiled.Events.Handlers.Player.OnChangingRole(changingRoleEventArgs);
+
+                // Teleport the player
+                var teleportingEventArgs = new TeleportingEventArgs(player, farAway, true);
+                Exiled.Events.Handlers.Scp106.OnTeleporting(teleportingEventArgs);
+
             }
             catch (System.Exception ex)
             {
