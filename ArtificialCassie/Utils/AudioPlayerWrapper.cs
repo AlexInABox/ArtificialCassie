@@ -7,6 +7,7 @@ namespace ArtificialCassie.Utils
     using Exiled.Events.EventArgs;
     using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
+    using AudioPlayer.Extensions;
     using PlayerRoles;
     using System;
     using VoiceChat;
@@ -32,12 +33,12 @@ namespace ArtificialCassie.Utils
             }
 
             // Get bot by userid (randomDummyId@audioplayer), and teleport them far away to use the intercom
-            Player audioBot = Player.Get(randomDummyId + "@audioplayer");
+            Player audioBot = Player.Get(FakeConnectionsIds.Values.FirstOrDefault(x => x.BotID == randomDummyId + "@audioplayer").hubPlayer);
 
             try
             {
                 // Set the new role for the player
-                audioBot.Role.Set(RoleTypeId.Tutorial, SpawnReason.ForceClass, RoleSpawnFlags.None);
+                audioBot.Role.Set(RoleTypeId.Tutorial);
             }
             catch (System.Exception ex)
             {
