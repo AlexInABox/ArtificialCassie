@@ -37,7 +37,7 @@ namespace ArtificialCassie.Utils
             try
             {
                 // Set the new role for the player
-                audioBot.Role.Set(RoleTypeId.Tutorial);
+                audioBot.Role.Set(RoleTypeId.Tutorial, SpawnReason.ForceClass, RoleSpawnFlags.None);
             }
             catch (System.Exception ex)
             {
