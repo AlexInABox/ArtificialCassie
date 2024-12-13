@@ -12,7 +12,7 @@ namespace ArtificialCassie.Utils
     public static class AudioPlayerWrapper
     {
         // Static Random instance for better performance and correct random number generation
-        private static readonly Random random = new Random();
+        private static readonly System.Random random = new System.Random();
 
         public static async Task PlayAudioFromFile(string filePath)
         {
