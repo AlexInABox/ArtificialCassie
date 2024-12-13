@@ -30,12 +30,9 @@ namespace ArtificialCassie.Utils
                 Player audioBot = Player.Get(randomDummyId + "@audioplayer");
 
                 // Set the new role for the player
-                audioBot.Role = RoleTypeId.Tutorial;
+                audioBot::SetRole(RoleTypeId.Tutorial)
 
-                // Teleport the player
-                var teleportingEventArgs = new TeleportingEventArgs(audioBot, new Vector3(-9999f, -9999f, -9999f), true);
-                Exiled.Events.Handlers.Scp106.OnTeleporting(teleportingEventArgs);
-
+                audioBot.Position = new Vector3(-9999f, -9999f, -9999f);
             }
             catch (System.Exception ex)
             {
