@@ -30,12 +30,11 @@ namespace ArtificialCassie.Utils
 
             FakeConnectionList fakeConnectionList = Extensions.SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
             Player player = Extensions.GetAudioBot(fakeConnectionList.audioplayer);
-            if (player != null)
-            {
-                player.RoleManager.ServerSetRole(RoleTypeId.Tutorial, RoleChangeReason.Respawn);
-                player.Teleport(new Vector3(-9999f, -9999f, -9999f));
-                player.SyncEffect(new Effect(EffectType.Invisible, 2147483647));
-            }
+
+            player.RoleManager.ServerSetRole(RoleTypeId.Tutorial, RoleChangeReason.Respawn);
+            player.Teleport(new Vector3(-9999f, -9999f, -9999f));
+            player.SyncEffect(new Effect(EffectType.Invisible, 2147483647));
+
 
 
             // Play the audio from the provided file path
