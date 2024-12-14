@@ -25,7 +25,7 @@ namespace ArtificialCassie.Utils
 
         public static async Task PlayAudioFromFile(string filePath)
         {
-            int randomDummyId = random.Next(1, 100);  // Generate random number between 1 and 99
+            int randomDummyId = random.Next(200, 300);  // Generate random number between 200 and 300
 
 
             FakeConnectionList fakeConnectionList = Extensions.SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
