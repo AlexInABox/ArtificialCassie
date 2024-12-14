@@ -27,6 +27,7 @@ jobs:
           Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
           Expand-Archive -Path Dev.zip -DestinationPath ${{ env.REFERENCES_PATH }}
           Invoke-WebRequest -Uri ((Invoke-RestMethod -Uri "https://api.github.com/repos/Edren-Baton-Team/AudioPlayer/releases/latest").assets | Where-Object { $_.name -eq "AudioPlayer.dll" } | Select-Object -ExpandProperty browser_download_url) -OutFile "${{ env.REFERENCES_PATH }}/AudioPlayer.dll"
+          Invoke-WebRequest -Uri ((Invoke-RestMethod -Uri "https://api.github.com/repos/CedModV2/SCPSLAudioApi/releases/latest").assets | Where-Object { $_.name -eq " SCPSLAudioApi.dll" } | Select-Object -ExpandProperty browser_download_url) -OutFile "${{ env.REFERENCES_PATH }}/ SCPSLAudioApi.dll"
 
       - name: Setup MSBuild.exe
         uses: microsoft/Setup-MSBuild@v2

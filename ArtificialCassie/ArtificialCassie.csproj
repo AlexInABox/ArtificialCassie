@@ -16,6 +16,7 @@
     <Reference Include="UnityEngine.PhysicsModule" HintPath="$(EXILED_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="false" />
     <Reference Include="UnityEngine.UnityWebRequestModule" HintPath="$(EXILED_REFERENCES)\UnityEngine.UnityWebRequestModule.dll" Private="false" />
     <Reference Include="AudioPlayer.API" HintPath="$(EXILED_REFERENCES)\AudioPlayer.dll" Private="false" />
+    <Reference Include="SCPSLAudioApi" HintPath="$(EXILED_REFERENCES)\SCPSLAudioApi.dll" Private="false" />
   </ItemGroup>
 
   <ItemGroup>
