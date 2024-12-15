@@ -10,13 +10,15 @@
 
     public class ArtificialCassie : Plugin<Config>
     {
+        public override string Prefix => "ArtificialCassie";
+        public override string Name => "ArtificialCassie";
+        public override string Author => "AlexInABox";
+        public override Version Version => new Version(1, 0, 0);
+
         private static ArtificialCassie Singleton;
         public static ArtificialCassie Instance => Singleton;
         private CassieHandler cassieHandler;
         public override PluginPriority Priority { get; } = PluginPriority.Last;
-
-        public override string Author { get; } = "AlexInABox";
-
         public override void OnEnabled()
         {
             if (string.IsNullOrWhiteSpace(Config.elevenlabs_api_key))
