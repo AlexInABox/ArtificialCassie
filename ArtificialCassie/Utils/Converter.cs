@@ -72,10 +72,11 @@ namespace ArtificialCassie.Utils
 
             // Extract audio duration using ffprobe
             double audioDuration = await GetAudioDuration(ffprobePath, oggFilePath);
+            int audioDurationInMillisAsInt = (int)(audioDuration * 1000);
 
             // Play the converted audio file
             Log.Debug($"Playing audioFile for: {audioDuration}");
-            AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDuration);
+            AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDurationInMillisAsInt);
         }
 
         private static async Task<double> GetAudioDuration(string ffprobePath, string filePath)

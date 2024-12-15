@@ -23,7 +23,7 @@ namespace ArtificialCassie.Utils
         // Static Random instance for better performance and correct random number generation
         private static readonly System.Random random = new System.Random();
 
-        public static async Task PlayAudioFromFile(string filePath, double audioDuration)
+        public static async Task PlayAudioFromFile(string filePath, int audioDuration)
         {
             int randomDummyId = random.Next(200, 300);  // Generate random number between 200 and 300
 
@@ -42,15 +42,7 @@ namespace ArtificialCassie.Utils
             // Play the audio from the provided file path
             AudioController.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true, randomDummyId);
 
-            await Task.Delay(500);
-
-            while (fakeConnectionList.audioplayer.CurrentPlay != null)
-            {
-                Log.Debug($"CurrentPlay: {fakeConnectionList.audioplayer.CurrentPlay}");
-                await Task.Delay(500); //Wait for the track to stop
-            }
-
-            Log.Debug($"CurrentPlay after: {fakeConnectionList.audioplayer.CurrentPlay}");
+            await Task.Delay(audioDuration + 500);
 
             try
             {
