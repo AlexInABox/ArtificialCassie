@@ -42,7 +42,7 @@ namespace ArtificialCassie.Utils
             // Play the audio from the provided file path
             AudioController.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true, randomDummyId);
 
-            while (player.audioplayer.CurrentPlay != null)
+            while (fakeConnectionList.audioplayer.CurrentPlay != null)
             {
                 await Task.Delay(500); //Wait for the track to stop
             }
