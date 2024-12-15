@@ -46,8 +46,11 @@ namespace ArtificialCassie.Utils
 
             while (fakeConnectionList.audioplayer.CurrentPlay != null)
             {
+                Log.Debug($"CurrentPlay: {fakeConnectionList.audioplayer.CurrentPlay}");
                 await Task.Delay(500); //Wait for the track to stop
             }
+
+            Log.Debug($"CurrentPlay after: {fakeConnectionList.audioplayer.CurrentPlay}");
 
             try
             {
