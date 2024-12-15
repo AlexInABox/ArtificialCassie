@@ -23,7 +23,7 @@ namespace ArtificialCassie.Utils
         // Static Random instance for better performance and correct random number generation
         private static readonly System.Random random = new System.Random();
 
-        public static async Task PlayAudioFromFile(string filePath, int audioDuration)
+        public static async Task PlayAudioFromFile(string filePath, double audioDuration)
         {
             int randomDummyId = random.Next(200, 300);  // Generate random number between 200 and 300
 
