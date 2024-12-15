@@ -74,7 +74,7 @@ namespace ArtificialCassie.Utils
             double audioDuration = await GetAudioDuration(ffprobePath, oggFilePath);
 
             // Play the converted audio file
-            Log.Debug("Playing file now...");
+            Log.Debug($"Playing audioFile for: {audioDuration}");
             AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDuration);
         }
 
