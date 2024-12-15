@@ -11,6 +11,7 @@ namespace ArtificialCassie.Utils
         public static async Task Convert(string filePath)
         {
             string ffmpegPath = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg/ffmpeg"; // Path to ffmpeg binary
+            string ffprobePath = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg/ffprobe"; // Path to ffprobe binary
             string tempFolderPath = "/home/container/.config/EXILED/Plugins/dependencies/tmp";
 
             // Define the path for the .ogg file, removing the extension from the original file
@@ -52,6 +53,7 @@ namespace ArtificialCassie.Utils
                             else
                             {
                                 Log.Error($"FFmpeg conversion failed: {error}");
+                                return; // Exit early if conversion failed
                             }
                         }
                     }
@@ -60,6 +62,7 @@ namespace ArtificialCassie.Utils
                 {
                     // Log any errors that occur during the conversion
                     Log.Error($"An error occurred while converting the file: {ex.Message}");
+                    return; // Exit early if an exception occurs
                 }
             }
             else
@@ -67,9 +70,56 @@ namespace ArtificialCassie.Utils
                 Log.Debug($"The file {oggFilePath} already exists. Skipping conversion.");
             }
 
+            // Extract audio duration using ffprobe
+            double audioDuration = await GetAudioDuration(ffprobePath, oggFilePath);
+
             // Play the converted audio file
             Log.Debug("Playing file now...");
-            AudioPlayerWrapper.PlayAudioFromFile(oggFilePath);
+            AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDuration);
+        }
+
+        private static async Task<double> GetAudioDuration(string ffprobePath, string filePath)
+        {
+            try
+            {
+                string arguments = $"-i \"{filePath}\" -show_entries format=duration -v quiet -of csv=\"p=0\"";
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = ffprobePath,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                using (Process process = Process.Start(startInfo))
+                {
+                    if (process != null)
+                    {
+                        string output = await process.StandardOutput.ReadToEndAsync();
+                        process.WaitForExit();
+
+                        if (double.TryParse(output, out double duration))
+                        {
+                            Log.Debug($"Audio duration extracted: {duration} seconds");
+                            return duration;
+                        }
+                        else
+                        {
+                            Log.Error("Failed to parse audio duration.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"An error occurred while extracting audio duration: {ex.Message}");
+            }
+
+            // Return 0 as a fallback
+            return 0;
         }
     }
 }
