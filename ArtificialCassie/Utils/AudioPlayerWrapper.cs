@@ -42,8 +42,10 @@ namespace ArtificialCassie.Utils
             // Play the audio from the provided file path
             AudioController.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true, randomDummyId);
 
-            // Wait for 5 seconds before removing the dummy
-            await Task.Delay(60000);  // 10000ms = 10 seconds
+            while (player.audioplayer.CurrentPlay != null)
+            {
+                await Task.Delay(500); //Wait for the track to stop
+            }
 
             try
             {
