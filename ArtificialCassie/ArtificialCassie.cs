@@ -15,7 +15,7 @@
         public override string Prefix => "ArtificialCassie";
         public override string Name => "ArtificialCassie";
         public override string Author => "AlexInABox";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 1, 0);
 
         private static ArtificialCassie Singleton;
         public static ArtificialCassie Instance => Singleton;
