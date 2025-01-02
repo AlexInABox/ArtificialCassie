@@ -1,20 +1,13 @@
+using AudioPlayer.API.Container;
+
 namespace ArtificialCassie.Utils
 {
     using System.Threading.Tasks;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using Exiled.API.Features.Roles;
-    using Exiled.Events.EventArgs;
-    using Exiled.Events.EventArgs.Player;
     using AudioPlayer.API;
     using AudioPlayer.Other;
-    using static AudioPlayer.Plugin;
     using PlayerRoles;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
     using VoiceChat;
     using UnityEngine;
 
@@ -28,8 +21,8 @@ namespace ArtificialCassie.Utils
             int randomDummyId = random.Next(200, 300);  // Generate random number between 200 and 300
 
 
-            FakeConnectionList fakeConnectionList = Extensions.SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
-            Player player = Extensions.GetAudioBot(fakeConnectionList.audioplayer);
+            AudioPlayerBot bot = Extensions.SpawnDummy(name: "C.A.S.S.I.E.", id: randomDummyId);
+            Player player = bot.Player;
 
             await Task.Delay(500);
 
@@ -40,14 +33,14 @@ namespace ArtificialCassie.Utils
             await Task.Delay(500);
 
             // Play the audio from the provided file path
-            AudioController.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true, randomDummyId);
+            bot.PlayAudioFromFile(filePath, false, 75, VoiceChatChannel.Intercom, false, false, true);
 
             await Task.Delay(audioDuration + 500);
 
             try
             {
                 // Remove the dummy after 5 seconds
-                AudioController.DisconnectDummy(randomDummyId);
+                bot.Destroy();
             }
             catch (System.Exception ex)
             {
