@@ -12,7 +12,6 @@ namespace ArtificialCassie.Utils
         {
             string ffmpegPath = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg/ffmpeg"; // Path to ffmpeg binary
             string ffprobePath = "/home/container/.config/EXILED/Plugins/dependencies/ffmpeg/ffprobe"; // Path to ffprobe binary
-            string tempFolderPath = "/home/container/.config/EXILED/Plugins/dependencies/tmp";
 
             // Define the path for the .ogg file, removing the extension from the original file
             string oggFilePath = Path.Combine(Path.GetDirectoryName(filePath), Path.GetFileNameWithoutExtension(filePath) + ".ogg");
@@ -76,7 +75,7 @@ namespace ArtificialCassie.Utils
 
             // Play the converted audio file
             Log.Debug($"Playing audioFile for: {audioDuration}");
-            AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDurationInMillisAsInt);
+            await AudioPlayerWrapper.PlayAudioFromFile(oggFilePath, audioDurationInMillisAsInt);
         }
 
         private static async Task<double> GetAudioDuration(string ffprobePath, string filePath)

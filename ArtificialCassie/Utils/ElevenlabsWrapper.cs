@@ -58,7 +58,6 @@ namespace ArtificialCassie.Utils
             // If file already exists, play it directly
             Log.Debug("Converting to .ogg");
             Converter.Convert(fullFilePath);
-
         }
 
         private static string ComputeMD5(string input)
